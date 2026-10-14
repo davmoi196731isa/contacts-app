@@ -27,7 +27,10 @@ jobs:
     - name: Build APK with Buildozer
       run: |
         sed -i 's/android.api = 35/android.api = 34/g' buildozer.spec
+        sed -i 's/#p4a.branch = master/p4a.branch = master/g' buildozer.spec
         buildozer android debug
+      env:
+        APP_ANDROID_ACCEPT_SDK_LICENSE: "1"
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
